@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "Newsletter Generator",
+  "version": "1.0.0",
+  "description": "AI-powered tool to capture and summarize content for internal newsletters",
+  
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  
+  "host_permissions": [
+    "https://*/*"
+  ],
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["content.js"]
+  }],
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Newsletter Generator"
+  },
+  
+  "options_page": "options.html",
+  
+  "commands": {
+    "capture-content": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+N",
+        "mac": "Command+Shift+N"
+      },
+      "description": "Capture selected content for newsletter"
+    }
+  },
+  
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
