@@ -46,7 +46,8 @@ function showUnsavedContentDialog(newSelectedText) {
     border-radius: 8px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     padding: 24px;
-    max-width: 400px;
+    width: 480px;
+    max-width: 90vw;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     color: #333;
   `;
@@ -86,7 +87,7 @@ function showUnsavedContentDialog(newSelectedText) {
   saveBtn.style.setProperty('visibility', 'visible', 'important');
   saveBtn.style.setProperty('white-space', 'nowrap', 'important');
   saveBtn.style.setProperty('text-align', 'center', 'important');
-  saveBtn.style.setProperty('width', '130px', 'important');
+  saveBtn.style.setProperty('width', '120px', 'important');
   saveBtn.style.setProperty('transition', 'all 0.2s ease', 'important');
   
   const discardBtn = document.createElement('button');
@@ -111,7 +112,7 @@ function showUnsavedContentDialog(newSelectedText) {
   discardBtn.style.setProperty('visibility', 'visible', 'important');
   discardBtn.style.setProperty('white-space', 'nowrap', 'important');
   discardBtn.style.setProperty('text-align', 'center', 'important');
-  discardBtn.style.setProperty('width', '150px', 'important');
+  discardBtn.style.setProperty('width', '160px', 'important');
   discardBtn.style.setProperty('transition', 'all 0.2s ease', 'important');
   
   const cancelBtn = document.createElement('button');
@@ -136,7 +137,7 @@ function showUnsavedContentDialog(newSelectedText) {
   cancelBtn.style.setProperty('visibility', 'visible', 'important');
   cancelBtn.style.setProperty('white-space', 'nowrap', 'important');
   cancelBtn.style.setProperty('text-align', 'center', 'important');
-  cancelBtn.style.setProperty('width', '100px', 'important');
+  cancelBtn.style.setProperty('width', '90px', 'important');
   cancelBtn.style.setProperty('transition', 'all 0.2s ease', 'important');
   
   // Add hover effects with animations
