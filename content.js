@@ -65,10 +65,10 @@ function showFullPageSummaryDialog() {
   const buttonContainer = document.createElement('div');
   buttonContainer.style.cssText = 'display: flex; justify-content: space-between; align-items: center;';
   
-  // Create buttons with consistent styling
+  // Create buttons with consistent styling matching the unsaved content dialog
   const summarizeBtn = document.createElement('button');
-  summarizeBtn.textContent = 'Summarize Page';
-  summarizeBtn.innerHTML = 'Summarize Page'; // Backup method
+  summarizeBtn.textContent = 'Summarize';
+  summarizeBtn.innerHTML = 'Summarize'; // Backup method
   summarizeBtn.style.setProperty('padding', '12px 20px', 'important');
   summarizeBtn.style.setProperty('border', 'none', 'important');
   summarizeBtn.style.setProperty('background', '#28a745', 'important');
@@ -78,7 +78,11 @@ function showFullPageSummaryDialog() {
   summarizeBtn.style.setProperty('font-size', '14px', 'important');
   summarizeBtn.style.setProperty('font-family', '-apple-system, BlinkMacSystemFont, sans-serif', 'important');
   summarizeBtn.style.setProperty('font-weight', '500', 'important');
-  summarizeBtn.style.setProperty('width', '130px', 'important');
+  summarizeBtn.style.setProperty('display', 'inline-block', 'important');
+  summarizeBtn.style.setProperty('box-sizing', 'border-box', 'important');
+  summarizeBtn.style.setProperty('line-height', '1.4', 'important');
+  summarizeBtn.style.setProperty('text-decoration', 'none', 'important');
+  summarizeBtn.style.setProperty('width', '120px', 'important');
   summarizeBtn.style.setProperty('white-space', 'nowrap', 'important');
   summarizeBtn.style.setProperty('text-align', 'center', 'important');
   summarizeBtn.style.setProperty('transition', 'all 0.2s ease', 'important');
@@ -86,18 +90,23 @@ function showFullPageSummaryDialog() {
   summarizeBtn.style.setProperty('visibility', 'visible', 'important');
   
   const selectTextBtn = document.createElement('button');
-  selectTextBtn.textContent = 'Select Text Instead';
-  selectTextBtn.innerHTML = 'Select Text Instead'; // Backup method
+  selectTextBtn.textContent = 'Select Text';
+  selectTextBtn.innerHTML = 'Select Text'; // Backup method
   selectTextBtn.style.setProperty('padding', '12px 20px', 'important');
   selectTextBtn.style.setProperty('border', 'none', 'important');
-  selectTextBtn.style.setProperty('background', '#dc3545', 'important');
-  selectTextBtn.style.setProperty('color', 'white', 'important');
+  selectTextBtn.style.setProperty('background', '#f3f4f6', 'important');
+  selectTextBtn.style.setProperty('color', '#374151', 'important');
+  selectTextBtn.style.setProperty('border', '1px solid #d1d5db', 'important');
   selectTextBtn.style.setProperty('border-radius', '6px', 'important');
   selectTextBtn.style.setProperty('cursor', 'pointer', 'important');
   selectTextBtn.style.setProperty('font-size', '14px', 'important');
   selectTextBtn.style.setProperty('font-family', '-apple-system, BlinkMacSystemFont, sans-serif', 'important');
   selectTextBtn.style.setProperty('font-weight', '500', 'important');
-  selectTextBtn.style.setProperty('width', '150px', 'important');
+  selectTextBtn.style.setProperty('display', 'inline-block', 'important');
+  selectTextBtn.style.setProperty('box-sizing', 'border-box', 'important');
+  selectTextBtn.style.setProperty('line-height', '1.4', 'important');
+  selectTextBtn.style.setProperty('text-decoration', 'none', 'important');
+  selectTextBtn.style.setProperty('width', '120px', 'important');
   selectTextBtn.style.setProperty('white-space', 'nowrap', 'important');
   selectTextBtn.style.setProperty('text-align', 'center', 'important');
   selectTextBtn.style.setProperty('transition', 'all 0.2s ease', 'important');
@@ -116,6 +125,10 @@ function showFullPageSummaryDialog() {
   cancelBtn.style.setProperty('font-size', '14px', 'important');
   cancelBtn.style.setProperty('font-family', '-apple-system, BlinkMacSystemFont, sans-serif', 'important');
   cancelBtn.style.setProperty('font-weight', '500', 'important');
+  cancelBtn.style.setProperty('display', 'inline-block', 'important');
+  cancelBtn.style.setProperty('box-sizing', 'border-box', 'important');
+  cancelBtn.style.setProperty('line-height', '1.4', 'important');
+  cancelBtn.style.setProperty('text-decoration', 'none', 'important');
   cancelBtn.style.setProperty('width', '90px', 'important');
   cancelBtn.style.setProperty('white-space', 'nowrap', 'important');
   cancelBtn.style.setProperty('text-align', 'center', 'important');
@@ -123,32 +136,38 @@ function showFullPageSummaryDialog() {
   cancelBtn.style.setProperty('opacity', '1', 'important');
   cancelBtn.style.setProperty('visibility', 'visible', 'important');
   
-  // Add hover effects
+  // Add hover effects with animations matching the unsaved content dialog
   summarizeBtn.addEventListener('mouseenter', () => {
     summarizeBtn.style.setProperty('background', '#218838', 'important');
     summarizeBtn.style.setProperty('transform', 'translateY(-1px)', 'important');
+    summarizeBtn.style.setProperty('box-shadow', '0 4px 8px rgba(40, 167, 69, 0.3)', 'important');
   });
   summarizeBtn.addEventListener('mouseleave', () => {
     summarizeBtn.style.setProperty('background', '#28a745', 'important');
     summarizeBtn.style.setProperty('transform', 'translateY(0)', 'important');
+    summarizeBtn.style.setProperty('box-shadow', 'none', 'important');
   });
   
   selectTextBtn.addEventListener('mouseenter', () => {
-    selectTextBtn.style.setProperty('background', '#c82333', 'important');
+    selectTextBtn.style.setProperty('background', '#e5e7eb', 'important');
     selectTextBtn.style.setProperty('transform', 'translateY(-1px)', 'important');
+    selectTextBtn.style.setProperty('box-shadow', '0 4px 8px rgba(156, 163, 175, 0.3)', 'important');
   });
   selectTextBtn.addEventListener('mouseleave', () => {
-    selectTextBtn.style.setProperty('background', '#dc3545', 'important');
+    selectTextBtn.style.setProperty('background', '#f3f4f6', 'important');
     selectTextBtn.style.setProperty('transform', 'translateY(0)', 'important');
+    selectTextBtn.style.setProperty('box-shadow', 'none', 'important');
   });
   
   cancelBtn.addEventListener('mouseenter', () => {
     cancelBtn.style.setProperty('background', '#0056b3', 'important');
     cancelBtn.style.setProperty('transform', 'translateY(-1px)', 'important');
+    cancelBtn.style.setProperty('box-shadow', '0 4px 8px rgba(0, 123, 255, 0.3)', 'important');
   });
   cancelBtn.addEventListener('mouseleave', () => {
     cancelBtn.style.setProperty('background', '#007bff', 'important');
     cancelBtn.style.setProperty('transform', 'translateY(0)', 'important');
+    cancelBtn.style.setProperty('box-shadow', 'none', 'important');
   });
   
   // Assemble dialog
