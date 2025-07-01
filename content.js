@@ -84,6 +84,9 @@ function showUnsavedContentDialog(newSelectedText) {
   saveBtn.style.setProperty('text-decoration', 'none', 'important');
   saveBtn.style.setProperty('opacity', '1', 'important');
   saveBtn.style.setProperty('visibility', 'visible', 'important');
+  saveBtn.style.setProperty('white-space', 'nowrap', 'important');
+  saveBtn.style.setProperty('text-align', 'center', 'important');
+  saveBtn.style.setProperty('min-width', '120px', 'important');
   
   const discardBtn = document.createElement('button');
   discardBtn.id = 'ng-discard-existing';
@@ -105,6 +108,9 @@ function showUnsavedContentDialog(newSelectedText) {
   discardBtn.style.setProperty('text-decoration', 'none', 'important');
   discardBtn.style.setProperty('opacity', '1', 'important');
   discardBtn.style.setProperty('visibility', 'visible', 'important');
+  discardBtn.style.setProperty('white-space', 'nowrap', 'important');
+  discardBtn.style.setProperty('text-align', 'center', 'important');
+  discardBtn.style.setProperty('min-width', '140px', 'important');
   
   const cancelBtn = document.createElement('button');
   cancelBtn.id = 'ng-cancel';
@@ -126,6 +132,9 @@ function showUnsavedContentDialog(newSelectedText) {
   cancelBtn.style.setProperty('text-decoration', 'none', 'important');
   cancelBtn.style.setProperty('opacity', '1', 'important');
   cancelBtn.style.setProperty('visibility', 'visible', 'important');
+  cancelBtn.style.setProperty('white-space', 'nowrap', 'important');
+  cancelBtn.style.setProperty('text-align', 'center', 'important');
+  cancelBtn.style.setProperty('min-width', '100px', 'important');
   
   // Add hover effects
   saveBtn.addEventListener('mouseenter', () => saveBtn.style.backgroundColor = '#f8f9fa');
