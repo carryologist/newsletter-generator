@@ -56,19 +56,22 @@ async function processContentWithAI(contentData) {
     const { categories } = await chrome.storage.sync.get(['categories']);
     
     const prompt = `
-Analyze the following content and create a concise newsletter summary:
+Analyze the following content and create a contextual newsletter summary:
 
 Content: "${contentData.selectedText}"
 Source URL: ${contentData.sourceUrl}
 
 Tasks:
-1. Create a 1-2 sentence summary suitable for an internal company newsletter
-2. Categorize the content using one of these categories: ${categories.join(', ')}
-3. If none fit well, suggest a new category
+1. Extract the author name from the content if mentioned (use "the author" if not found)
+2. Determine the content type (post, article, update, announcement, milestone, etc.)
+3. Clean up the domain name (e.g. "medium.com" → "Medium", "linkedin.com" → "LinkedIn")
+4. Create a summary using this format: "This [content-type] from [clean-domain] describes how [author] [summary]"
+5. Categorize using one of these categories: ${categories.join(', ')}
+6. If none fit well, suggest a new category
 
 Respond in JSON format:
 {
-  "summary": "Brief summary here",
+  "summary": "This [content-type] from [clean-domain] describes how [author] [summary]",
   "category": "Selected or suggested category",
   "isNewCategory": true/false,
   "confidence": 0.0-1.0
