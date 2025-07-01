@@ -1,5 +1,4 @@
 // Content script for Newsletter Generator
-console.log('Newsletter Generator content script loaded');
 
 // Listen for messages from background script
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -11,7 +10,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 // Capture selected text and process it
 function captureSelectedContent() {
-  console.log('captureSelectedContent called');
   const selectedText = window.getSelection().toString().trim();
   
   if (!selectedText) {
@@ -53,15 +51,52 @@ function showUnsavedContentDialog(newSelectedText) {
     color: #333;
   `;
   
-  dialog.innerHTML = `
-    <h3 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 600;">Unsaved Content</h3>
-    <p style="margin: 0 0 20px 0; line-height: 1.5; color: #666;">You have unsaved content in the extension popup. What would you like to do?</p>
-    <div style="display: flex; gap: 12px; justify-content: flex-end;">
-      <button id="ng-save-existing" style="padding: 8px 16px; border: 1px solid #ddd; background: white; border-radius: 4px; cursor: pointer;">Save Existing</button>
-      <button id="ng-discard-existing" style="padding: 8px 16px; border: 1px solid #ddd; background: white; border-radius: 4px; cursor: pointer;">Discard & Continue</button>
-      <button id="ng-cancel" style="padding: 8px 16px; border: none; background: #007bff; color: white; border-radius: 4px; cursor: pointer;">Cancel</button>
-    </div>
-  `;
+  // Create elements programmatically for better reliability
+  const title = document.createElement('h3');
+  title.textContent = 'Unsaved Content';
+  title.style.cssText = 'margin: 0 0 16px 0; font-size: 18px; font-weight: 600; color: #333;';
+  
+  const message = document.createElement('p');
+  message.textContent = 'You have unsaved content in the extension popup. What would you like to do?';
+  message.style.cssText = 'margin: 0 0 20px 0; line-height: 1.5; color: #666;';
+  
+  const buttonContainer = document.createElement('div');
+  buttonContainer.style.cssText = 'display: flex; gap: 12px; justify-content: flex-end;';
+  
+  // Create buttons
+  const saveBtn = document.createElement('button');
+  saveBtn.id = 'ng-save-existing';
+  saveBtn.textContent = 'Save Existing';
+  saveBtn.style.cssText = 'padding: 10px 16px; border: 1px solid #ddd; background: white; border-radius: 6px; cursor: pointer; font-size: 14px; font-family: inherit;';
+  
+  const discardBtn = document.createElement('button');
+  discardBtn.id = 'ng-discard-existing';
+  discardBtn.textContent = 'Discard & Continue';
+  discardBtn.style.cssText = 'padding: 10px 16px; border: 1px solid #ddd; background: white; border-radius: 6px; cursor: pointer; font-size: 14px; font-family: inherit;';
+  
+  const cancelBtn = document.createElement('button');
+  cancelBtn.id = 'ng-cancel';
+  cancelBtn.textContent = 'Cancel';
+  cancelBtn.style.cssText = 'padding: 10px 16px; border: none; background: #007bff; color: white; border-radius: 6px; cursor: pointer; font-size: 14px; font-family: inherit;';
+  
+  // Add hover effects
+  saveBtn.addEventListener('mouseenter', () => saveBtn.style.backgroundColor = '#f8f9fa');
+  saveBtn.addEventListener('mouseleave', () => saveBtn.style.backgroundColor = 'white');
+  
+  discardBtn.addEventListener('mouseenter', () => discardBtn.style.backgroundColor = '#f8f9fa');
+  discardBtn.addEventListener('mouseleave', () => discardBtn.style.backgroundColor = 'white');
+  
+  cancelBtn.addEventListener('mouseenter', () => cancelBtn.style.backgroundColor = '#0056b3');
+  cancelBtn.addEventListener('mouseleave', () => cancelBtn.style.backgroundColor = '#007bff');
+  
+  // Assemble dialog
+  buttonContainer.appendChild(saveBtn);
+  buttonContainer.appendChild(discardBtn);
+  buttonContainer.appendChild(cancelBtn);
+  
+  dialog.appendChild(title);
+  dialog.appendChild(message);
+  dialog.appendChild(buttonContainer);
   
   // Add backdrop
   const backdrop = document.createElement('div');
@@ -79,14 +114,14 @@ function showUnsavedContentDialog(newSelectedText) {
   document.body.appendChild(dialog);
   
   // Handle button clicks
-  dialog.querySelector('#ng-save-existing').addEventListener('click', () => {
+  saveBtn.addEventListener('click', () => {
     // Open popup to save existing content
     chrome.runtime.sendMessage({ action: 'openPopup' });
     removeDialog();
     showNotification('Please save your existing content first', 'info');
   });
   
-  dialog.querySelector('#ng-discard-existing').addEventListener('click', () => {
+  discardBtn.addEventListener('click', () => {
     // Clear existing content and process new
     chrome.storage.local.remove(['pendingContent'], () => {
       removeDialog();
@@ -94,7 +129,7 @@ function showUnsavedContentDialog(newSelectedText) {
     });
   });
   
-  dialog.querySelector('#ng-cancel').addEventListener('click', () => {
+  cancelBtn.addEventListener('click', () => {
     removeDialog();
   });
   
