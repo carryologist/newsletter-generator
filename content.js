@@ -61,7 +61,7 @@ function showUnsavedContentDialog(newSelectedText) {
   message.style.cssText = 'margin: 0 0 20px 0; line-height: 1.5; color: #666;';
   
   const buttonContainer = document.createElement('div');
-  buttonContainer.style.cssText = 'display: flex; gap: 12px; justify-content: flex-end;';
+  buttonContainer.style.cssText = 'display: flex; gap: 16px; justify-content: flex-end; align-items: center;';
   
   // Create buttons with aggressive styling to override website CSS
   const saveBtn = document.createElement('button');
@@ -70,13 +70,13 @@ function showUnsavedContentDialog(newSelectedText) {
   saveBtn.innerHTML = 'Save Existing'; // Backup method
   // Set individual properties to be more forceful
   saveBtn.style.setProperty('padding', '12px 20px', 'important');
-  saveBtn.style.setProperty('border', '1px solid #28a745', 'important');
-  saveBtn.style.setProperty('background', '#f8fff9', 'important');
+  saveBtn.style.setProperty('border', 'none', 'important');
+  saveBtn.style.setProperty('background', '#28a745', 'important');
   saveBtn.style.setProperty('border-radius', '6px', 'important');
   saveBtn.style.setProperty('cursor', 'pointer', 'important');
   saveBtn.style.setProperty('font-size', '14px', 'important');
   saveBtn.style.setProperty('font-family', '-apple-system, BlinkMacSystemFont, sans-serif', 'important');
-  saveBtn.style.setProperty('color', '#28a745', 'important');
+  saveBtn.style.setProperty('color', 'white', 'important');
   saveBtn.style.setProperty('display', 'inline-block', 'important');
   saveBtn.style.setProperty('box-sizing', 'border-box', 'important');
   saveBtn.style.setProperty('line-height', '1.4', 'important');
@@ -86,7 +86,8 @@ function showUnsavedContentDialog(newSelectedText) {
   saveBtn.style.setProperty('visibility', 'visible', 'important');
   saveBtn.style.setProperty('white-space', 'nowrap', 'important');
   saveBtn.style.setProperty('text-align', 'center', 'important');
-  saveBtn.style.setProperty('width', '140px', 'important');
+  saveBtn.style.setProperty('width', '130px', 'important');
+  saveBtn.style.setProperty('transition', 'all 0.2s ease', 'important');
   
   const discardBtn = document.createElement('button');
   discardBtn.id = 'ng-discard-existing';
@@ -94,13 +95,13 @@ function showUnsavedContentDialog(newSelectedText) {
   discardBtn.innerHTML = 'Discard & Continue'; // Backup method
   // Set individual properties to be more forceful
   discardBtn.style.setProperty('padding', '12px 20px', 'important');
-  discardBtn.style.setProperty('border', '1px solid #dc3545', 'important');
-  discardBtn.style.setProperty('background', '#fff5f5', 'important');
+  discardBtn.style.setProperty('border', 'none', 'important');
+  discardBtn.style.setProperty('background', '#dc3545', 'important');
   discardBtn.style.setProperty('border-radius', '6px', 'important');
   discardBtn.style.setProperty('cursor', 'pointer', 'important');
   discardBtn.style.setProperty('font-size', '14px', 'important');
   discardBtn.style.setProperty('font-family', '-apple-system, BlinkMacSystemFont, sans-serif', 'important');
-  discardBtn.style.setProperty('color', '#dc3545', 'important');
+  discardBtn.style.setProperty('color', 'white', 'important');
   discardBtn.style.setProperty('display', 'inline-block', 'important');
   discardBtn.style.setProperty('box-sizing', 'border-box', 'important');
   discardBtn.style.setProperty('line-height', '1.4', 'important');
@@ -110,7 +111,8 @@ function showUnsavedContentDialog(newSelectedText) {
   discardBtn.style.setProperty('visibility', 'visible', 'important');
   discardBtn.style.setProperty('white-space', 'nowrap', 'important');
   discardBtn.style.setProperty('text-align', 'center', 'important');
-  discardBtn.style.setProperty('width', '140px', 'important');
+  discardBtn.style.setProperty('width', '150px', 'important');
+  discardBtn.style.setProperty('transition', 'all 0.2s ease', 'important');
   
   const cancelBtn = document.createElement('button');
   cancelBtn.id = 'ng-cancel';
@@ -134,32 +136,41 @@ function showUnsavedContentDialog(newSelectedText) {
   cancelBtn.style.setProperty('visibility', 'visible', 'important');
   cancelBtn.style.setProperty('white-space', 'nowrap', 'important');
   cancelBtn.style.setProperty('text-align', 'center', 'important');
-  cancelBtn.style.setProperty('width', '140px', 'important');
+  cancelBtn.style.setProperty('width', '100px', 'important');
+  cancelBtn.style.setProperty('transition', 'all 0.2s ease', 'important');
   
-  // Add hover effects
+  // Add hover effects with animations
   saveBtn.addEventListener('mouseenter', () => {
-    saveBtn.style.setProperty('background', '#e6ffed', 'important');
-    saveBtn.style.setProperty('border-color', '#1e7e34', 'important');
+    saveBtn.style.setProperty('background', '#218838', 'important');
+    saveBtn.style.setProperty('transform', 'translateY(-1px)', 'important');
+    saveBtn.style.setProperty('box-shadow', '0 4px 8px rgba(40, 167, 69, 0.3)', 'important');
   });
   saveBtn.addEventListener('mouseleave', () => {
-    saveBtn.style.setProperty('background', '#f8fff9', 'important');
-    saveBtn.style.setProperty('border-color', '#28a745', 'important');
+    saveBtn.style.setProperty('background', '#28a745', 'important');
+    saveBtn.style.setProperty('transform', 'translateY(0)', 'important');
+    saveBtn.style.setProperty('box-shadow', 'none', 'important');
   });
   
   discardBtn.addEventListener('mouseenter', () => {
-    discardBtn.style.setProperty('background', '#f5c6cb', 'important');
-    discardBtn.style.setProperty('border-color', '#bd2130', 'important');
+    discardBtn.style.setProperty('background', '#c82333', 'important');
+    discardBtn.style.setProperty('transform', 'translateY(-1px)', 'important');
+    discardBtn.style.setProperty('box-shadow', '0 4px 8px rgba(220, 53, 69, 0.3)', 'important');
   });
   discardBtn.addEventListener('mouseleave', () => {
-    discardBtn.style.setProperty('background', '#fff5f5', 'important');
-    discardBtn.style.setProperty('border-color', '#dc3545', 'important');
+    discardBtn.style.setProperty('background', '#dc3545', 'important');
+    discardBtn.style.setProperty('transform', 'translateY(0)', 'important');
+    discardBtn.style.setProperty('box-shadow', 'none', 'important');
   });
   
   cancelBtn.addEventListener('mouseenter', () => {
     cancelBtn.style.setProperty('background', '#0056b3', 'important');
+    cancelBtn.style.setProperty('transform', 'translateY(-1px)', 'important');
+    cancelBtn.style.setProperty('box-shadow', '0 4px 8px rgba(0, 123, 255, 0.3)', 'important');
   });
   cancelBtn.addEventListener('mouseleave', () => {
     cancelBtn.style.setProperty('background', '#007bff', 'important');
+    cancelBtn.style.setProperty('transform', 'translateY(0)', 'important');
+    cancelBtn.style.setProperty('box-shadow', 'none', 'important');
   });
   
   // Assemble dialog
