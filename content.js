@@ -13,7 +13,8 @@ function captureSelectedContent() {
   const selectedText = window.getSelection().toString().trim();
   
   if (!selectedText) {
-    showNotification('Please select some text first', 'warning');
+    // No text selected - offer to summarize entire page
+    showFullPageSummaryDialog();
     return;
   }
   
@@ -30,6 +31,152 @@ function captureSelectedContent() {
       processNewContent(selectedText);
     }
   });
+}
+
+// Show dialog asking if user wants to summarize the entire page
+function showFullPageSummaryDialog() {
+  const dialog = document.createElement('div');
+  dialog.id = 'newsletter-generator-fullpage-dialog';
+  dialog.style.cssText = `
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10001;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    padding: 24px;
+    width: 480px;
+    max-width: 90vw;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #333;
+  `;
+  
+  // Create elements programmatically
+  const title = document.createElement('h3');
+  title.textContent = 'No Text Selected';
+  title.style.cssText = 'margin: 0 0 16px 0; font-size: 18px; font-weight: 600; color: #333;';
+  
+  const message = document.createElement('p');
+  message.textContent = 'No text is currently selected. Would you like to summarize the entire page instead?';
+  message.style.cssText = 'margin: 0 0 20px 0; line-height: 1.5; color: #666;';
+  
+  const buttonContainer = document.createElement('div');
+  buttonContainer.style.cssText = 'display: flex; justify-content: space-between; align-items: center;';
+  
+  // Create buttons
+  const summarizeBtn = document.createElement('button');
+  summarizeBtn.textContent = 'Summarize Page';
+  summarizeBtn.style.setProperty('padding', '12px 20px', 'important');
+  summarizeBtn.style.setProperty('border', 'none', 'important');
+  summarizeBtn.style.setProperty('background', '#28a745', 'important');
+  summarizeBtn.style.setProperty('color', 'white', 'important');
+  summarizeBtn.style.setProperty('border-radius', '6px', 'important');
+  summarizeBtn.style.setProperty('cursor', 'pointer', 'important');
+  summarizeBtn.style.setProperty('font-size', '14px', 'important');
+  summarizeBtn.style.setProperty('font-family', '-apple-system, BlinkMacSystemFont, sans-serif', 'important');
+  summarizeBtn.style.setProperty('font-weight', '500', 'important');
+  summarizeBtn.style.setProperty('width', '140px', 'important');
+  summarizeBtn.style.setProperty('transition', 'all 0.2s ease', 'important');
+  
+  const selectTextBtn = document.createElement('button');
+  selectTextBtn.textContent = 'Select Text Instead';
+  selectTextBtn.style.setProperty('padding', '12px 20px', 'important');
+  selectTextBtn.style.setProperty('border', '1px solid #ddd', 'important');
+  selectTextBtn.style.setProperty('background', 'white', 'important');
+  selectTextBtn.style.setProperty('color', '#333', 'important');
+  selectTextBtn.style.setProperty('border-radius', '6px', 'important');
+  selectTextBtn.style.setProperty('cursor', 'pointer', 'important');
+  selectTextBtn.style.setProperty('font-size', '14px', 'important');
+  selectTextBtn.style.setProperty('font-family', '-apple-system, BlinkMacSystemFont, sans-serif', 'important');
+  selectTextBtn.style.setProperty('font-weight', '500', 'important');
+  selectTextBtn.style.setProperty('width', '160px', 'important');
+  selectTextBtn.style.setProperty('transition', 'all 0.2s ease', 'important');
+  
+  const cancelBtn = document.createElement('button');
+  cancelBtn.textContent = 'Cancel';
+  cancelBtn.style.setProperty('padding', '12px 20px', 'important');
+  cancelBtn.style.setProperty('border', 'none', 'important');
+  cancelBtn.style.setProperty('background', '#007bff', 'important');
+  cancelBtn.style.setProperty('color', 'white', 'important');
+  cancelBtn.style.setProperty('border-radius', '6px', 'important');
+  cancelBtn.style.setProperty('cursor', 'pointer', 'important');
+  cancelBtn.style.setProperty('font-size', '14px', 'important');
+  cancelBtn.style.setProperty('font-family', '-apple-system, BlinkMacSystemFont, sans-serif', 'important');
+  cancelBtn.style.setProperty('font-weight', '500', 'important');
+  cancelBtn.style.setProperty('width', '90px', 'important');
+  cancelBtn.style.setProperty('transition', 'all 0.2s ease', 'important');
+  
+  // Add hover effects
+  summarizeBtn.addEventListener('mouseenter', () => {
+    summarizeBtn.style.setProperty('background', '#218838', 'important');
+    summarizeBtn.style.setProperty('transform', 'translateY(-1px)', 'important');
+  });
+  summarizeBtn.addEventListener('mouseleave', () => {
+    summarizeBtn.style.setProperty('background', '#28a745', 'important');
+    summarizeBtn.style.setProperty('transform', 'translateY(0)', 'important');
+  });
+  
+  selectTextBtn.addEventListener('mouseenter', () => {
+    selectTextBtn.style.setProperty('background', '#f8f9fa', 'important');
+  });
+  selectTextBtn.addEventListener('mouseleave', () => {
+    selectTextBtn.style.setProperty('background', 'white', 'important');
+  });
+  
+  cancelBtn.addEventListener('mouseenter', () => {
+    cancelBtn.style.setProperty('background', '#0056b3', 'important');
+    cancelBtn.style.setProperty('transform', 'translateY(-1px)', 'important');
+  });
+  cancelBtn.addEventListener('mouseleave', () => {
+    cancelBtn.style.setProperty('background', '#007bff', 'important');
+    cancelBtn.style.setProperty('transform', 'translateY(0)', 'important');
+  });
+  
+  // Assemble dialog
+  buttonContainer.appendChild(summarizeBtn);
+  buttonContainer.appendChild(selectTextBtn);
+  buttonContainer.appendChild(cancelBtn);
+  
+  dialog.appendChild(title);
+  dialog.appendChild(message);
+  dialog.appendChild(buttonContainer);
+  
+  // Add backdrop
+  const backdrop = document.createElement('div');
+  backdrop.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+  `;
+  
+  document.body.appendChild(backdrop);
+  document.body.appendChild(dialog);
+  
+  // Handle button clicks
+  summarizeBtn.addEventListener('click', () => {
+    removeDialog();
+    processFullPageContent();
+  });
+  
+  selectTextBtn.addEventListener('click', () => {
+    removeDialog();
+    showNotification('Please select text on the page and try again', 'info');
+  });
+  
+  cancelBtn.addEventListener('click', () => {
+    removeDialog();
+  });
+  
+  function removeDialog() {
+    backdrop.remove();
+    dialog.remove();
+  }
 }
 
 // Show dialog for unsaved content
@@ -285,6 +432,89 @@ function extractAuthorFromPage() {
   }
   
   return null; // No author found
+}
+
+// Process full page content when no text is selected
+function processFullPageContent() {
+  // Extract main content from the page
+  const pageContent = extractPageContent();
+  
+  if (!pageContent || pageContent.length < 50) {
+    showNotification('Unable to extract meaningful content from this page', 'warning');
+    return;
+  }
+  
+  // Check for existing unsaved content
+  chrome.storage.local.get(['pendingContent'], (result) => {
+    if (result.pendingContent) {
+      showUnsavedContentDialog(pageContent);
+    } else {
+      processNewContent(pageContent);
+    }
+  });
+}
+
+// Extract main content from the page
+function extractPageContent() {
+  // Try to find the main content area using common selectors
+  const contentSelectors = [
+    'article',
+    'main',
+    '[role="main"]',
+    '.post-content',
+    '.article-content',
+    '.entry-content',
+    '.content',
+    '.post-body',
+    '.article-body'
+  ];
+  
+  let content = '';
+  
+  // Try each selector to find the main content
+  for (const selector of contentSelectors) {
+    const element = document.querySelector(selector);
+    if (element) {
+      content = element.innerText || element.textContent;
+      if (content && content.trim().length > 100) {
+        break;
+      }
+    }
+  }
+  
+  // Fallback: extract from body but filter out navigation, ads, etc.
+  if (!content || content.trim().length < 100) {
+    const body = document.body.cloneNode(true);
+    
+    // Remove unwanted elements
+    const unwantedSelectors = [
+      'nav', 'header', 'footer', 'aside',
+      '.navigation', '.nav', '.menu',
+      '.sidebar', '.widget', '.ad', '.advertisement',
+      '.social', '.share', '.comments',
+      'script', 'style', 'noscript'
+    ];
+    
+    unwantedSelectors.forEach(selector => {
+      const elements = body.querySelectorAll(selector);
+      elements.forEach(el => el.remove());
+    });
+    
+    content = body.innerText || body.textContent;
+  }
+  
+  // Clean up the content
+  content = content
+    .replace(/\s+/g, ' ')  // Replace multiple whitespace with single space
+    .replace(/\n\s*\n/g, '\n')  // Remove empty lines
+    .trim();
+  
+  // Limit content length to avoid overwhelming the AI
+  if (content.length > 8000) {
+    content = content.substring(0, 8000) + '...';
+  }
+  
+  return content;
 }
 
 // Process new content (extracted from original function)
