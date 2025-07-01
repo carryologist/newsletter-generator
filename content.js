@@ -21,6 +21,88 @@ function captureSelectedContent() {
     return;
   }
   
+  // Check for existing unsaved content
+  chrome.storage.local.get(['pendingContent'], (result) => {
+    if (result.pendingContent) {
+      showUnsavedContentDialog(selectedText);
+    } else {
+      processNewContent(selectedText);
+    }
+  });
+}
+
+// Show dialog for unsaved content
+function showUnsavedContentDialog(newSelectedText) {
+  const dialog = document.createElement('div');
+  dialog.id = 'newsletter-generator-dialog';
+  dialog.style.cssText = `
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10001;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    padding: 24px;
+    max-width: 400px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #333;
+  `;
+  
+  dialog.innerHTML = `
+    <h3 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 600;">Unsaved Content</h3>
+    <p style="margin: 0 0 20px 0; line-height: 1.5; color: #666;">You have unsaved content in the extension popup. What would you like to do?</p>
+    <div style="display: flex; gap: 12px; justify-content: flex-end;">
+      <button id="ng-save-existing" style="padding: 8px 16px; border: 1px solid #ddd; background: white; border-radius: 4px; cursor: pointer;">Save Existing</button>
+      <button id="ng-discard-existing" style="padding: 8px 16px; border: 1px solid #ddd; background: white; border-radius: 4px; cursor: pointer;">Discard & Continue</button>
+      <button id="ng-cancel" style="padding: 8px 16px; border: none; background: #007bff; color: white; border-radius: 4px; cursor: pointer;">Cancel</button>
+    </div>
+  `;
+  
+  // Add backdrop
+  const backdrop = document.createElement('div');
+  backdrop.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+  `;
+  
+  document.body.appendChild(backdrop);
+  document.body.appendChild(dialog);
+  
+  // Handle button clicks
+  dialog.querySelector('#ng-save-existing').addEventListener('click', () => {
+    // Open popup to save existing content
+    chrome.runtime.sendMessage({ action: 'openPopup' });
+    removeDialog();
+    showNotification('Please save your existing content first', 'info');
+  });
+  
+  dialog.querySelector('#ng-discard-existing').addEventListener('click', () => {
+    // Clear existing content and process new
+    chrome.storage.local.remove(['pendingContent'], () => {
+      removeDialog();
+      processNewContent(newSelectedText);
+    });
+  });
+  
+  dialog.querySelector('#ng-cancel').addEventListener('click', () => {
+    removeDialog();
+  });
+  
+  function removeDialog() {
+    backdrop.remove();
+    dialog.remove();
+  }
+}
+
+// Process new content (extracted from original function)
+function processNewContent(selectedText) {
   // Show loading indicator
   showNotification('Processing content...', 'info');
   
