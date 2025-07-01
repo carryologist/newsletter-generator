@@ -63,21 +63,69 @@ function showUnsavedContentDialog(newSelectedText) {
   const buttonContainer = document.createElement('div');
   buttonContainer.style.cssText = 'display: flex; gap: 12px; justify-content: flex-end;';
   
-  // Create buttons
+  // Create buttons with aggressive styling to override website CSS
   const saveBtn = document.createElement('button');
   saveBtn.id = 'ng-save-existing';
   saveBtn.textContent = 'Save Existing';
-  saveBtn.style.cssText = 'padding: 10px 16px; border: 1px solid #ddd; background: white; border-radius: 6px; cursor: pointer; font-size: 14px; font-family: inherit;';
+  saveBtn.innerHTML = 'Save Existing'; // Backup method
+  // Set individual properties to be more forceful
+  saveBtn.style.setProperty('padding', '10px 16px', 'important');
+  saveBtn.style.setProperty('border', '1px solid #ddd', 'important');
+  saveBtn.style.setProperty('background', 'white', 'important');
+  saveBtn.style.setProperty('border-radius', '6px', 'important');
+  saveBtn.style.setProperty('cursor', 'pointer', 'important');
+  saveBtn.style.setProperty('font-size', '14px', 'important');
+  saveBtn.style.setProperty('font-family', '-apple-system, BlinkMacSystemFont, sans-serif', 'important');
+  saveBtn.style.setProperty('color', '#333', 'important');
+  saveBtn.style.setProperty('display', 'inline-block', 'important');
+  saveBtn.style.setProperty('box-sizing', 'border-box', 'important');
+  saveBtn.style.setProperty('line-height', '1.4', 'important');
+  saveBtn.style.setProperty('font-weight', '500', 'important');
+  saveBtn.style.setProperty('text-decoration', 'none', 'important');
+  saveBtn.style.setProperty('opacity', '1', 'important');
+  saveBtn.style.setProperty('visibility', 'visible', 'important');
   
   const discardBtn = document.createElement('button');
   discardBtn.id = 'ng-discard-existing';
   discardBtn.textContent = 'Discard & Continue';
-  discardBtn.style.cssText = 'padding: 10px 16px; border: 1px solid #ddd; background: white; border-radius: 6px; cursor: pointer; font-size: 14px; font-family: inherit;';
+  discardBtn.innerHTML = 'Discard & Continue'; // Backup method
+  // Set individual properties to be more forceful
+  discardBtn.style.setProperty('padding', '10px 16px', 'important');
+  discardBtn.style.setProperty('border', '1px solid #ddd', 'important');
+  discardBtn.style.setProperty('background', 'white', 'important');
+  discardBtn.style.setProperty('border-radius', '6px', 'important');
+  discardBtn.style.setProperty('cursor', 'pointer', 'important');
+  discardBtn.style.setProperty('font-size', '14px', 'important');
+  discardBtn.style.setProperty('font-family', '-apple-system, BlinkMacSystemFont, sans-serif', 'important');
+  discardBtn.style.setProperty('color', '#333', 'important');
+  discardBtn.style.setProperty('display', 'inline-block', 'important');
+  discardBtn.style.setProperty('box-sizing', 'border-box', 'important');
+  discardBtn.style.setProperty('line-height', '1.4', 'important');
+  discardBtn.style.setProperty('font-weight', '500', 'important');
+  discardBtn.style.setProperty('text-decoration', 'none', 'important');
+  discardBtn.style.setProperty('opacity', '1', 'important');
+  discardBtn.style.setProperty('visibility', 'visible', 'important');
   
   const cancelBtn = document.createElement('button');
   cancelBtn.id = 'ng-cancel';
   cancelBtn.textContent = 'Cancel';
-  cancelBtn.style.cssText = 'padding: 10px 16px; border: none; background: #007bff; color: white; border-radius: 6px; cursor: pointer; font-size: 14px; font-family: inherit;';
+  cancelBtn.innerHTML = 'Cancel'; // Backup method
+  // Set individual properties to be more forceful
+  cancelBtn.style.setProperty('padding', '10px 16px', 'important');
+  cancelBtn.style.setProperty('border', 'none', 'important');
+  cancelBtn.style.setProperty('background', '#007bff', 'important');
+  cancelBtn.style.setProperty('border-radius', '6px', 'important');
+  cancelBtn.style.setProperty('cursor', 'pointer', 'important');
+  cancelBtn.style.setProperty('font-size', '14px', 'important');
+  cancelBtn.style.setProperty('font-family', '-apple-system, BlinkMacSystemFont, sans-serif', 'important');
+  cancelBtn.style.setProperty('color', 'white', 'important');
+  cancelBtn.style.setProperty('display', 'inline-block', 'important');
+  cancelBtn.style.setProperty('box-sizing', 'border-box', 'important');
+  cancelBtn.style.setProperty('line-height', '1.4', 'important');
+  cancelBtn.style.setProperty('font-weight', '500', 'important');
+  cancelBtn.style.setProperty('text-decoration', 'none', 'important');
+  cancelBtn.style.setProperty('opacity', '1', 'important');
+  cancelBtn.style.setProperty('visibility', 'visible', 'important');
   
   // Add hover effects
   saveBtn.addEventListener('mouseenter', () => saveBtn.style.backgroundColor = '#f8f9fa');
