@@ -40,7 +40,7 @@ function captureSelectedContent() {
       }, () => {
         // Open the extension popup
         chrome.runtime.sendMessage({ action: 'openPopup' });
-        showNotification('Content processed! Check the extension popup.', 'success');
+        showNotification('Content processed! Opening review popup...', 'success');
       });
     } else {
       showNotification(`Error: ${response.error}`, 'error');

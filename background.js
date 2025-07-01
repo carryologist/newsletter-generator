@@ -177,12 +177,20 @@ async function saveToNotion(summaryData) {
   }
 }
 
-// Expose saveToNotion for popup
+// Expose saveToNotion for popup and handle openPopup
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'saveToNotion') {
     saveToNotion(request.data)
       .then(result => sendResponse({ success: true, data: result }))
       .catch(error => sendResponse({ success: false, error: error.message }));
     return true;
+  }
+  
+  if (request.action === 'openPopup') {
+    // Try to open the popup automatically
+    chrome.action.openPopup().catch(error => {
+      console.log('Could not open popup automatically:', error);
+      // Fallback: The user will need to click the extension icon
+    });
   }
 });
