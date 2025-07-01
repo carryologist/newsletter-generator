@@ -65,9 +65,10 @@ function showFullPageSummaryDialog() {
   const buttonContainer = document.createElement('div');
   buttonContainer.style.cssText = 'display: flex; justify-content: space-between; align-items: center;';
   
-  // Create buttons
+  // Create buttons with consistent styling
   const summarizeBtn = document.createElement('button');
   summarizeBtn.textContent = 'Summarize Page';
+  summarizeBtn.innerHTML = 'Summarize Page'; // Backup method
   summarizeBtn.style.setProperty('padding', '12px 20px', 'important');
   summarizeBtn.style.setProperty('border', 'none', 'important');
   summarizeBtn.style.setProperty('background', '#28a745', 'important');
@@ -77,25 +78,35 @@ function showFullPageSummaryDialog() {
   summarizeBtn.style.setProperty('font-size', '14px', 'important');
   summarizeBtn.style.setProperty('font-family', '-apple-system, BlinkMacSystemFont, sans-serif', 'important');
   summarizeBtn.style.setProperty('font-weight', '500', 'important');
-  summarizeBtn.style.setProperty('width', '140px', 'important');
+  summarizeBtn.style.setProperty('width', '130px', 'important');
+  summarizeBtn.style.setProperty('white-space', 'nowrap', 'important');
+  summarizeBtn.style.setProperty('text-align', 'center', 'important');
   summarizeBtn.style.setProperty('transition', 'all 0.2s ease', 'important');
+  summarizeBtn.style.setProperty('opacity', '1', 'important');
+  summarizeBtn.style.setProperty('visibility', 'visible', 'important');
   
   const selectTextBtn = document.createElement('button');
   selectTextBtn.textContent = 'Select Text Instead';
+  selectTextBtn.innerHTML = 'Select Text Instead'; // Backup method
   selectTextBtn.style.setProperty('padding', '12px 20px', 'important');
-  selectTextBtn.style.setProperty('border', '1px solid #ddd', 'important');
-  selectTextBtn.style.setProperty('background', 'white', 'important');
-  selectTextBtn.style.setProperty('color', '#333', 'important');
+  selectTextBtn.style.setProperty('border', 'none', 'important');
+  selectTextBtn.style.setProperty('background', '#dc3545', 'important');
+  selectTextBtn.style.setProperty('color', 'white', 'important');
   selectTextBtn.style.setProperty('border-radius', '6px', 'important');
   selectTextBtn.style.setProperty('cursor', 'pointer', 'important');
   selectTextBtn.style.setProperty('font-size', '14px', 'important');
   selectTextBtn.style.setProperty('font-family', '-apple-system, BlinkMacSystemFont, sans-serif', 'important');
   selectTextBtn.style.setProperty('font-weight', '500', 'important');
-  selectTextBtn.style.setProperty('width', '160px', 'important');
+  selectTextBtn.style.setProperty('width', '150px', 'important');
+  selectTextBtn.style.setProperty('white-space', 'nowrap', 'important');
+  selectTextBtn.style.setProperty('text-align', 'center', 'important');
   selectTextBtn.style.setProperty('transition', 'all 0.2s ease', 'important');
+  selectTextBtn.style.setProperty('opacity', '1', 'important');
+  selectTextBtn.style.setProperty('visibility', 'visible', 'important');
   
   const cancelBtn = document.createElement('button');
   cancelBtn.textContent = 'Cancel';
+  cancelBtn.innerHTML = 'Cancel'; // Backup method
   cancelBtn.style.setProperty('padding', '12px 20px', 'important');
   cancelBtn.style.setProperty('border', 'none', 'important');
   cancelBtn.style.setProperty('background', '#007bff', 'important');
@@ -106,7 +117,11 @@ function showFullPageSummaryDialog() {
   cancelBtn.style.setProperty('font-family', '-apple-system, BlinkMacSystemFont, sans-serif', 'important');
   cancelBtn.style.setProperty('font-weight', '500', 'important');
   cancelBtn.style.setProperty('width', '90px', 'important');
+  cancelBtn.style.setProperty('white-space', 'nowrap', 'important');
+  cancelBtn.style.setProperty('text-align', 'center', 'important');
   cancelBtn.style.setProperty('transition', 'all 0.2s ease', 'important');
+  cancelBtn.style.setProperty('opacity', '1', 'important');
+  cancelBtn.style.setProperty('visibility', 'visible', 'important');
   
   // Add hover effects
   summarizeBtn.addEventListener('mouseenter', () => {
@@ -119,10 +134,12 @@ function showFullPageSummaryDialog() {
   });
   
   selectTextBtn.addEventListener('mouseenter', () => {
-    selectTextBtn.style.setProperty('background', '#f8f9fa', 'important');
+    selectTextBtn.style.setProperty('background', '#c82333', 'important');
+    selectTextBtn.style.setProperty('transform', 'translateY(-1px)', 'important');
   });
   selectTextBtn.addEventListener('mouseleave', () => {
-    selectTextBtn.style.setProperty('background', 'white', 'important');
+    selectTextBtn.style.setProperty('background', '#dc3545', 'important');
+    selectTextBtn.style.setProperty('transform', 'translateY(0)', 'important');
   });
   
   cancelBtn.addEventListener('mouseenter', () => {
