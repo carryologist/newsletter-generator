@@ -62,7 +62,7 @@ function showUnsavedContentDialog(newSelectedText) {
   message.style.cssText = 'margin: 0 0 20px 0; line-height: 1.5; color: #666;';
   
   const buttonContainer = document.createElement('div');
-  buttonContainer.style.cssText = 'display: flex; gap: 16px; justify-content: flex-end; align-items: center;';
+  buttonContainer.style.cssText = 'display: flex; justify-content: space-between; align-items: center;';
   
   // Create buttons with aggressive styling to override website CSS
   const saveBtn = document.createElement('button');
