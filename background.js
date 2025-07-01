@@ -27,7 +27,13 @@ chrome.commands.onCommand.addListener((command) => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       if (tabs[0]) {
         // Send message to content script to capture selected text
-        chrome.tabs.sendMessage(tabs[0].id, { action: 'captureSelection' });
+        chrome.tabs.sendMessage(tabs[0].id, { action: 'captureSelection' }, (response) => {
+          // Handle potential connection errors
+          if (chrome.runtime.lastError) {
+            console.log('Content script not available on this page:', chrome.runtime.lastError.message);
+            // Could show a notification or badge here if needed
+          }
+        });
       }
     });
   }

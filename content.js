@@ -5,6 +5,7 @@ console.log('Newsletter Generator content script loaded');
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'captureSelection') {
     captureSelectedContent();
+    sendResponse({ success: true }); // Acknowledge the message
   }
 });
 
