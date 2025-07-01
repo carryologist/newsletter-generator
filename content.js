@@ -1,4 +1,5 @@
 // Content script for Newsletter Generator
+console.log('Newsletter Generator content script loaded');
 
 // Listen for messages from background script
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -9,6 +10,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 // Capture selected text and process it
 function captureSelectedContent() {
+  console.log('captureSelectedContent called');
   const selectedText = window.getSelection().toString().trim();
   
   if (!selectedText) {
