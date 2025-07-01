@@ -69,14 +69,14 @@ function showUnsavedContentDialog(newSelectedText) {
   saveBtn.textContent = 'Save Existing';
   saveBtn.innerHTML = 'Save Existing'; // Backup method
   // Set individual properties to be more forceful
-  saveBtn.style.setProperty('padding', '10px 16px', 'important');
-  saveBtn.style.setProperty('border', '1px solid #ddd', 'important');
-  saveBtn.style.setProperty('background', 'white', 'important');
+  saveBtn.style.setProperty('padding', '12px 20px', 'important');
+  saveBtn.style.setProperty('border', '1px solid #28a745', 'important');
+  saveBtn.style.setProperty('background', '#f8fff9', 'important');
   saveBtn.style.setProperty('border-radius', '6px', 'important');
   saveBtn.style.setProperty('cursor', 'pointer', 'important');
   saveBtn.style.setProperty('font-size', '14px', 'important');
   saveBtn.style.setProperty('font-family', '-apple-system, BlinkMacSystemFont, sans-serif', 'important');
-  saveBtn.style.setProperty('color', '#333', 'important');
+  saveBtn.style.setProperty('color', '#28a745', 'important');
   saveBtn.style.setProperty('display', 'inline-block', 'important');
   saveBtn.style.setProperty('box-sizing', 'border-box', 'important');
   saveBtn.style.setProperty('line-height', '1.4', 'important');
@@ -86,21 +86,21 @@ function showUnsavedContentDialog(newSelectedText) {
   saveBtn.style.setProperty('visibility', 'visible', 'important');
   saveBtn.style.setProperty('white-space', 'nowrap', 'important');
   saveBtn.style.setProperty('text-align', 'center', 'important');
-  saveBtn.style.setProperty('min-width', '120px', 'important');
+  saveBtn.style.setProperty('width', '140px', 'important');
   
   const discardBtn = document.createElement('button');
   discardBtn.id = 'ng-discard-existing';
   discardBtn.textContent = 'Discard & Continue';
   discardBtn.innerHTML = 'Discard & Continue'; // Backup method
   // Set individual properties to be more forceful
-  discardBtn.style.setProperty('padding', '10px 16px', 'important');
-  discardBtn.style.setProperty('border', '1px solid #ddd', 'important');
-  discardBtn.style.setProperty('background', 'white', 'important');
+  discardBtn.style.setProperty('padding', '12px 20px', 'important');
+  discardBtn.style.setProperty('border', '1px solid #dc3545', 'important');
+  discardBtn.style.setProperty('background', '#fff5f5', 'important');
   discardBtn.style.setProperty('border-radius', '6px', 'important');
   discardBtn.style.setProperty('cursor', 'pointer', 'important');
   discardBtn.style.setProperty('font-size', '14px', 'important');
   discardBtn.style.setProperty('font-family', '-apple-system, BlinkMacSystemFont, sans-serif', 'important');
-  discardBtn.style.setProperty('color', '#333', 'important');
+  discardBtn.style.setProperty('color', '#dc3545', 'important');
   discardBtn.style.setProperty('display', 'inline-block', 'important');
   discardBtn.style.setProperty('box-sizing', 'border-box', 'important');
   discardBtn.style.setProperty('line-height', '1.4', 'important');
@@ -110,14 +110,14 @@ function showUnsavedContentDialog(newSelectedText) {
   discardBtn.style.setProperty('visibility', 'visible', 'important');
   discardBtn.style.setProperty('white-space', 'nowrap', 'important');
   discardBtn.style.setProperty('text-align', 'center', 'important');
-  discardBtn.style.setProperty('min-width', '140px', 'important');
+  discardBtn.style.setProperty('width', '140px', 'important');
   
   const cancelBtn = document.createElement('button');
   cancelBtn.id = 'ng-cancel';
   cancelBtn.textContent = 'Cancel';
   cancelBtn.innerHTML = 'Cancel'; // Backup method
   // Set individual properties to be more forceful
-  cancelBtn.style.setProperty('padding', '10px 16px', 'important');
+  cancelBtn.style.setProperty('padding', '12px 20px', 'important');
   cancelBtn.style.setProperty('border', 'none', 'important');
   cancelBtn.style.setProperty('background', '#007bff', 'important');
   cancelBtn.style.setProperty('border-radius', '6px', 'important');
@@ -134,17 +134,33 @@ function showUnsavedContentDialog(newSelectedText) {
   cancelBtn.style.setProperty('visibility', 'visible', 'important');
   cancelBtn.style.setProperty('white-space', 'nowrap', 'important');
   cancelBtn.style.setProperty('text-align', 'center', 'important');
-  cancelBtn.style.setProperty('min-width', '100px', 'important');
+  cancelBtn.style.setProperty('width', '140px', 'important');
   
   // Add hover effects
-  saveBtn.addEventListener('mouseenter', () => saveBtn.style.backgroundColor = '#f8f9fa');
-  saveBtn.addEventListener('mouseleave', () => saveBtn.style.backgroundColor = 'white');
+  saveBtn.addEventListener('mouseenter', () => {
+    saveBtn.style.setProperty('background', '#e6ffed', 'important');
+    saveBtn.style.setProperty('border-color', '#1e7e34', 'important');
+  });
+  saveBtn.addEventListener('mouseleave', () => {
+    saveBtn.style.setProperty('background', '#f8fff9', 'important');
+    saveBtn.style.setProperty('border-color', '#28a745', 'important');
+  });
   
-  discardBtn.addEventListener('mouseenter', () => discardBtn.style.backgroundColor = '#f8f9fa');
-  discardBtn.addEventListener('mouseleave', () => discardBtn.style.backgroundColor = 'white');
+  discardBtn.addEventListener('mouseenter', () => {
+    discardBtn.style.setProperty('background', '#f5c6cb', 'important');
+    discardBtn.style.setProperty('border-color', '#bd2130', 'important');
+  });
+  discardBtn.addEventListener('mouseleave', () => {
+    discardBtn.style.setProperty('background', '#fff5f5', 'important');
+    discardBtn.style.setProperty('border-color', '#dc3545', 'important');
+  });
   
-  cancelBtn.addEventListener('mouseenter', () => cancelBtn.style.backgroundColor = '#0056b3');
-  cancelBtn.addEventListener('mouseleave', () => cancelBtn.style.backgroundColor = '#007bff');
+  cancelBtn.addEventListener('mouseenter', () => {
+    cancelBtn.style.setProperty('background', '#0056b3', 'important');
+  });
+  cancelBtn.addEventListener('mouseleave', () => {
+    cancelBtn.style.setProperty('background', '#007bff', 'important');
+  });
   
   // Assemble dialog
   buttonContainer.appendChild(saveBtn);
