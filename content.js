@@ -224,19 +224,87 @@ function showUnsavedContentDialog(newSelectedText) {
   }
 }
 
+// Extract author information from page metadata and common elements
+function extractAuthorFromPage() {
+  // Try various methods to find author information
+  
+  // 1. Check meta tags
+  const authorMeta = document.querySelector('meta[name="author"]');
+  if (authorMeta && authorMeta.content) {
+    return authorMeta.content.trim();
+  }
+  
+  // 2. Check article author meta
+  const articleAuthor = document.querySelector('meta[property="article:author"]');
+  if (articleAuthor && articleAuthor.content) {
+    return articleAuthor.content.trim();
+  }
+  
+  // 3. Check Twitter card author
+  const twitterCreator = document.querySelector('meta[name="twitter:creator"]');
+  if (twitterCreator && twitterCreator.content) {
+    return twitterCreator.content.replace('@', '').trim();
+  }
+  
+  // 4. Look for common author class names and elements
+  const authorSelectors = [
+    '.author-name',
+    '.byline-author',
+    '.post-author',
+    '.article-author',
+    '[rel="author"]',
+    '.author',
+    '.by-author',
+    '.writer-name'
+  ];
+  
+  for (const selector of authorSelectors) {
+    const authorElement = document.querySelector(selector);
+    if (authorElement && authorElement.textContent) {
+      const authorText = authorElement.textContent.trim();
+      // Clean up common prefixes
+      return authorText.replace(/^(by|author:?|written by)\s*/i, '').trim();
+    }
+  }
+  
+  // 5. Look for JSON-LD structured data
+  const jsonLdScripts = document.querySelectorAll('script[type="application/ld+json"]');
+  for (const script of jsonLdScripts) {
+    try {
+      const data = JSON.parse(script.textContent);
+      if (data.author) {
+        if (typeof data.author === 'string') {
+          return data.author.trim();
+        } else if (data.author.name) {
+          return data.author.name.trim();
+        }
+      }
+    } catch (e) {
+      // Ignore JSON parsing errors
+    }
+  }
+  
+  return null; // No author found
+}
+
 // Process new content (extracted from original function)
 function processNewContent(selectedText) {
   // Show loading indicator
   showNotification('Processing content...', 'info');
   
+  // Gather additional page metadata for better AI analysis
+  const pageMetadata = {
+    selectedText: selectedText,
+    sourceUrl: window.location.href,
+    pageTitle: document.title,
+    // Try to extract author from common meta tags and page elements
+    author: extractAuthorFromPage()
+  };
+  
   // Send to background script for AI processing
   chrome.runtime.sendMessage({
     action: 'processContent',
-    data: {
-      selectedText: selectedText,
-      sourceUrl: window.location.href,
-      pageTitle: document.title
-    }
+    data: pageMetadata
   }, (response) => {
     if (response.success) {
       // Store the processed data and open popup

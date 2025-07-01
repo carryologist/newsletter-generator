@@ -66,11 +66,13 @@ Analyze the following content and create a contextual newsletter summary:
 
 Content: "${contentData.selectedText}"
 Source URL: ${contentData.sourceUrl}
+Page Title: "${contentData.pageTitle}"
+${contentData.author ? `Author: ${contentData.author}` : ''}
 
 Tasks:
-1. Extract the author name from the content if mentioned (use "the author" if not found)
+1. Use the provided author name if available, otherwise extract from content or use "the author" as fallback
 2. Determine the content type (post, article, update, announcement, milestone, etc.)
-3. Clean up the domain name (e.g. "medium.com" → "Medium", "linkedin.com" → "LinkedIn")
+3. Clean up the domain name (e.g. "medium.com" → "Medium", "linkedin.com" → "LinkedIn", "thenewstack.io" → "The New Stack")
 4. Create a summary using this format: "This [content-type] from [clean-domain] describes how [author] [summary]"
 5. Categorize using one of these categories: ${categories.join(', ')}
 6. If none fit well, suggest a new category
