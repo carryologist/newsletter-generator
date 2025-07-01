@@ -34,11 +34,9 @@
     "capture-content": {
       "suggested_key": {
         "default": "Ctrl+Shift+N",
-        "mac": "Command+Alt+N"
+        "mac": "MacCtrl+Shift+N"
       },
       "description": "Capture selected content for newsletter"
     }
-  },
-  
-
+  }
 }
