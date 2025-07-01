@@ -94,9 +94,9 @@ function showFullPageSummaryDialog() {
   selectTextBtn.innerHTML = 'Select Text'; // Backup method
   selectTextBtn.style.setProperty('padding', '12px 20px', 'important');
   selectTextBtn.style.setProperty('border', 'none', 'important');
-  selectTextBtn.style.setProperty('background', '#f3f4f6', 'important');
-  selectTextBtn.style.setProperty('color', '#374151', 'important');
-  selectTextBtn.style.setProperty('border', '1px solid #d1d5db', 'important');
+  selectTextBtn.style.setProperty('background', '#dc3545', 'important');
+  selectTextBtn.style.setProperty('color', 'white', 'important');
+  selectTextBtn.style.setProperty('border', 'none', 'important');
   selectTextBtn.style.setProperty('border-radius', '6px', 'important');
   selectTextBtn.style.setProperty('cursor', 'pointer', 'important');
   selectTextBtn.style.setProperty('font-size', '14px', 'important');
@@ -149,12 +149,12 @@ function showFullPageSummaryDialog() {
   });
   
   selectTextBtn.addEventListener('mouseenter', () => {
-    selectTextBtn.style.setProperty('background', '#e5e7eb', 'important');
+    selectTextBtn.style.setProperty('background', '#c82333', 'important');
     selectTextBtn.style.setProperty('transform', 'translateY(-1px)', 'important');
-    selectTextBtn.style.setProperty('box-shadow', '0 4px 8px rgba(156, 163, 175, 0.3)', 'important');
+    selectTextBtn.style.setProperty('box-shadow', '0 4px 8px rgba(220, 53, 69, 0.3)', 'important');
   });
   selectTextBtn.addEventListener('mouseleave', () => {
-    selectTextBtn.style.setProperty('background', '#f3f4f6', 'important');
+    selectTextBtn.style.setProperty('background', '#dc3545', 'important');
     selectTextBtn.style.setProperty('transform', 'translateY(0)', 'important');
     selectTextBtn.style.setProperty('box-shadow', 'none', 'important');
   });
